@@ -1,0 +1,177 @@
+<!--
+
+Copyright (c) 2019 - ALANDOUGLAS GODINHO MENDES - https://codepen.io/alandouglasmendes/pen/GbQJoJ
+
+Permission is hereby granted, free of charge, to any person 
+obtaining a copy of this software and associated documentation 
+files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, 
+merge, publish, distribute, sublicense, and/or sell copies of 
+the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall 
+be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+DEALINGS IN THE SOFTWARE.
+
+-->
+<!DOCTYPE HTML>
+<html>
+ <main>
+   <head>    
+     <title>A bmf and bmi index calculator made using html/css/javascripting</title>  <style type="text/css"> 
+     #main_title
+{
+  color: #002288;
+}
+     #main_alert {
+       color: #ff0000;
+       
+     }
+     #converter_holder{
+       width: 58%;
+       background-color: #006600;
+       color: #99ff99;
+       border: #ff9999 0.5% groove;
+       margin: auto;
+       text-align: left;
+       border-radius: .5em;
+       float: right;
+     }
+     #bfm_bmi_holder{
+       width: 39%;
+       background-color: #000066;
+       color: #9999ff;
+       border: #99ff99 0.5% groove;
+       margin: auto;
+       text-align: left;
+       border-radius: .5em;
+       float: left;
+     }
+     </style>
+     <script type="text/javascript" >
+       
+function convertPoundsToKg()
+{
+  
+  var massPound = document.getElementById('mass_pounds_tb').value;
+  var massKg = massPound*0.453;
+  document.getElementById('massConv').innerText="Your mass in kg is equal to " + massKg.toFixed(3)+" Kgs.";
+    }
+function convertHeightInchCm()
+{
+  
+  var heightInch = document.getElementById('height_inches_tb').value;
+  var heightCm = heightInch*2.5/100;
+  document.getElementById('heightConv').innerText="Your height in meters is equal to " + heightCm.toFixed(2)+"  meters.";
+    }
+ function convertWaistInchCm()
+{
+  
+  var waistInch = document.getElementById('waist_inches_tb').value;
+  var waistCm = waistInch*2.5;
+  document.getElementById('waistConv').innerText="Your waist in meters is equal to " + waistCm.toFixed(2)/100+" meters.";
+    }
+     function setHeight (){
+       var Height = document.getElementById('height_tb').value;
+         document.getElementById('height_verifier').innerText="Height is "+Height+'.';
+     }
+     function bioData()
+{
+  var bioindex = Number(document.getElementById('gender_tb').value)
+  
+}
+   function setAge(){
+         var Age = document.getElementById('age_tb').value;
+         document.getElementById('age_verifier').innerText="Age is "+Age;
+       }
+       function setWeight(){
+         var Weight = document.getElementById('mass_kg_tb').value;
+         document.getElementById('weight_verifier').innerText="weight is "+Weight;
+       }
+       function setBioSex(){
+         var biosex = Number(document.getElementById('biosex_tb').value);
+       var Weight = Number(document.getElementById('mass_kg_tb').value);
+         var Age = Number(document.getElementById('age_tb').value);
+         var Height = Number(document.getElementById('height_tb').value);
+         var bmi = Weight/(Height*Height);
+         
+          var bfp = 1.39*bmi+0.16*Age-(10.34*biosex);
+          var biosex = Number(document.getElementById('biosex_tb').value);
+          if (biosex == 1){
+           document.getElementById('biosex_verifier').innerText='Biological sex is male, weight is '+Weight+', Age is '+Age+',  and height is '+Height+'. on these conditions, bmi is '+bmi.toFixed(1)+' and bfp is '+bfp.toFixed(1)+'%.';
+         } if (biosex ==0){
+           document.getElementById('biosex_verifier').innerText='Biological sex is female, weight is '+Weight+', Age is '+Age+', and height is '+Height+'. on these conditions, bmi is '+bmi.toFixed(1)+' and bfp is '+bfp.toFixed(1)+'%.';
+         }
+         
+         document.getElementByIb('bmi_bfp_output').innerText='Your bmi is '+bmi+'and your bfp is '+bfp+'.';
+    }
+       function finalcalc(){
+       document.getElementByIb('bmi_bfp_output').innerText='OLAR';
+                           }
+       function bfpBmiCalc(){
+         
+         var biosex = Number(document.getElementById('biosex_tb').value);
+         var Weight = Number(document.getElementById('mass_kg_tb').value);
+         var Age = Number(document.getElementById('age_tb').value);
+         var Height = Number(document.getElementById('height_tb').value);
+         var bmi = Weight/(Height*Height);
+         var bfp = 1.39*bmi+0.16*Age-(10.34*biosex);
+         document.getElementByIb('bmi_bfp_output').innerText='Your bmi is '+bmi+'and your bfp is '+bfp+'.';
+       }
+</script>
+   </head>
+   <body id='main'>
+   <h1 id='main_title' name='main_title' class='main_title'>This is a web app written to calculate both body mass index* and body fat mass percentage*</h1>
+     <p>*I have limited acces to limited databases, so by the moment, I just have data for female and male adults. I lack data from transgender adults, and I would be very happy to add them, if you could share from some source to be analyzed(I'm not really into doing it for children. Since theyr body is changing so fast, i don't think these measures would be useful to them without a proper healthh profession). </p> <!--If you need to know, this was my source: https://en.wikipedia.org/wiki/Body_fat_percentage. There are better sources for more specific cases and, never enough to say, you always should see a doctor.-->
+   <h2 id='main_alert' name='main_alert' class='main_alert'>This app is not a doctor, is just a source of tips! Keep that in mind!</h2> <!--It is really important to avoid misuse of technology and knowledge in small portions, specially on unsupervisioned content/use, concerning to health.-->
+   <form id='converter_holder'name='converter_holder' class='converter_holder'>
+     <h3 id='data_entry_solicitation' name='data_entry_solicitation' class=' data_entry_solicitation'>
+       Please insert data on the respective textboxes below and mark measuring accordingly. Use the converters if you have values on imperial system. The values will show automatically when you set all fields properly. please fill biological sex field last.
+     </h3>
+   <div id='pound_data'>
+   <label id='label_input_pounds'>How many pounds?</label><input id="mass_pounds_tb" type="number" min="1" max="1200"  oninput="convertPoundsToKg()">
+   <p id='massConv'>Mass is unknown.</p>
+    </div>
+    <div id='inch_data'>
+      <label id='label_input_height'>What is the height in inches?</label><input id="height_inches_tb" type="number" min="1" max="120"  oninput="convertHeightInchCm()">
+   <p id='heightConv'> Height is unknown.</p>
+   </div> 
+   </form>
+     <form id='mainForm' onsubmit='bfpBmiCalc()' action='?'>
+    <div id='bfm_bmi_holder'>
+       <label id='label_bmi_bfp_output'>Click submit to evaluate the bmi and bfp with metric units, age and biological sex:</label>
+      <br>
+       <div id='age_data'>
+      <label id='label_input_age'>What is the age?</label><input id="age_tb" type="number" min="18" max="120" required="required" oninput="setAge()">
+   <p id='age_verifier'> Age is unknown.</p>
+<div id='height_data'>
+      <label id='label_input_height'>What is the height in meters?</label><input id="height_tb" type="number" min="0.01" max="2.7" step='0.01'required="required" oninput="setHeight()">
+   <p id='height_verifier'> Height is unknown.</p>
+      
+   </div>
+         <div id='weight_data'>
+      <label id='label_input_mass'>What is the weight in Kgs?</label><input id="mass_kg_tb" type="number" min="0.5" max="660" step='0.5' required="required" oninput="setWeight()">
+   <p id='weight_verifier'> Weight is unknown.</p>
+      
+   </div>
+      <div id='biosex_data'>
+      <label id='label_radio_biosex'>Check the biological sex:</label>
+        <br>(Male =1, female = 0)<br>
+      <input type="number" min='0' max='1' step='1' id='biosex_tb' required='required' onInput='setBioSex()'>
+        <p id="biosex_verifier">Biological sex is unknown</p>
+        <br>    
+   </div>
+         </form>
+      
+     </body>
+</main>    
+</html>     
